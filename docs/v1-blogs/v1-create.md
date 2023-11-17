@@ -6,6 +6,7 @@
 #### Params
 - title : ``string (min length = 4 characters)``
 - description : ``string (min length = 6 characters)``
+- slug : `` generated automaticlly ``
 - image : ``mimes ['png', 'jpeg', 'jpg']``
 - author: `` user_id ``
 - created_at `` Date ``
