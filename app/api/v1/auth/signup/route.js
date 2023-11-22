@@ -1,7 +1,9 @@
 import { NextResponse } from 'next/server'
-import { connectToDB } from '../../../configs/database.js';
-import User from '../../../models/user.model.js';
+import { connectToDB } from '../../../../configs/database.js';
+import User from '../../../../models/user.model.js';
+import { generateToken } from '../../../../utils/JWTToken.js';
 import bcrypt from 'bcryptjs'
+import { cookies } from 'next/headers'
 connectToDB();
 
 export async function POST(request) {
@@ -26,7 +28,18 @@ export async function POST(request) {
             password: hashed_password
         });
 
-        return NextResponse.json({ message: "User created Successfully" }, { status: 201 });
+        if (new_user) {
+            //  Generate token
+            const token = generateToken(new_user);
+            // set cookie
+            cookies().set({
+                name: "access_token",
+                value: token,
+                maxAge: 604800,
+                httpOnly: true
+            });
+            return NextResponse.json({ message: "User created Successfully", token: token }, { status: 201 });
+        }
     } catch (error) {
         return NextResponse.json({ message: error.message }, { status: 500 });
     }
