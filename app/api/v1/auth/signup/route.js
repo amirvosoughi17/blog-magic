@@ -33,7 +33,7 @@ export async function POST(request) {
     try {
         const new_user = await User.create({
             name,
-            email,q
+            email,
             password: hashed_password
         });
         return generateToken("User created Successfully", 201, new_user);
