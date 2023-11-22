@@ -12,7 +12,7 @@ export default function signup() {
     const [loading, setLoading] = useState(false);
     const router = useRouter();
     const [user, setUser] = useState({
-        username: "",
+        name: "",
         email: "",
         password: ''
     })
@@ -54,8 +54,8 @@ export default function signup() {
                 </div>
                 <div className="flex flex-col items-center gap-2 ">
                     <div className="flex flex-col  w-[300px] gap-1 md:w-[360px]">
-                        <label className='text-emerald-950'>username</label>
-                        <input type='text' className='text-emerald-950 text-sm border-[1px] border-stone-500/30 py-[7px] px-2 focus:outline-none rounded-md  ' value={user.username} onChange={(e) => setUser({ ...user, username: e.target.value })} />
+                        <label className='text-emerald-950'>name</label>
+                        <input type='text' className='text-emerald-950 text-sm border-[1px] border-stone-500/30 py-[7px] px-2 focus:outline-none rounded-md  ' value={user.name} onChange={(e) => setUser({ ...user, name: e.target.value })} />
                     </div>
                     <div className="flex flex-col  w-[300px] gap-1 md:w-[360px]">
                         <label className='text-emerald-950'>email</label>
