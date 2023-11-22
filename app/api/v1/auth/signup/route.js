@@ -10,6 +10,9 @@ export async function POST(request) {
     const body = await request.json();
     //  Recive values from inputs
     const { name, email, password } = body;
+
+    //  ****SIGNUP VALIDATIONS****
+
     // Check if sended request in not empty
     if (!name || !email || !password) {
         return NextResponse.json({ message: "Please fill in all fields" }, { status: 400 });
@@ -19,6 +22,12 @@ export async function POST(request) {
     if (user) {
         return NextResponse.json({ message: "Email already registered in website" }, { status: 400 });
     }
+
+    //  Check for password length
+    if (password.length < 4) {
+        return NextResponse.json({ message: "Password must be more than 4 characters" })
+    }
+
     // Encrypt the password
     const hashed_password = bcrypt.hashSync(password, 10);
     try {
@@ -27,19 +36,7 @@ export async function POST(request) {
             email,
             password: hashed_password
         });
-
-        if (new_user) {
-            //  Generate token
-            const token = generateToken(new_user);
-            // set cookie
-            cookies().set({
-                name: "access_token",
-                value: token,
-                maxAge: 604800,
-                httpOnly: true
-            });
-            return NextResponse.json({ message: "User created Successfully", token: token }, { status: 201 });
-        }
+        return generateToken("User created Successfully", 201, new_user);
     } catch (error) {
         return NextResponse.json({ message: error.message }, { status: 500 });
     }
