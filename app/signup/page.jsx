@@ -8,6 +8,7 @@ import { SlSocialGoogle } from 'react-icons/sl'
 import { FaGithub } from 'react-icons/fa'
 
 export default function signup() {
+    
     const [loading, setLoading] = useState(false);
     const router = useRouter();
     const [user, setUser] = useState({
@@ -64,7 +65,7 @@ export default function signup() {
                         <label className='text-emerald-950'>password</label>
                         <input type='password' className='text-emerald-950 text-sm border-[1px] border-stone-500/30 py-[7px] px-2 focus:outline-none rounded-md  ' value={user.password} onChange={(e) => setUser({ ...user, password: e.target.value })} />
                     </div>
-                    <button className='w-full bg-emerald-500 py-[7px] rounded-md text-emerald-900 mt-4 border-[1px] border-emerald-700' onClick={handleSubmit}>{loading ? "Loading..." : "Register"}</button>
+                    <button className='w-full bg-emerald-500 py-[7px] rounded-md text-emerald-900 mt-4 border-[1px] border-emerald-700 hover:border-1 hover:border-emerald-700' onClick={handleSubmit}>{loading ? "Loading..." : "Register"}</button>
                     <div className="flex items-center w-full my-2">
                         <p className='text-sm text-stone-600' >have an account? </p>
                         <Link className='text-sm text-emerald-600' href="/login"> Login</Link>

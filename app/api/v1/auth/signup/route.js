@@ -24,7 +24,7 @@ export async function POST(request) {
     try {
         const new_user = await User.create({
             name,
-            email,
+            email,q
             password: hashed_password
         });
 
