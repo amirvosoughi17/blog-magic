@@ -1,6 +1,6 @@
 
 import './globals.css'
-import Navbar from './components/Navbar'
+import Navbar from './(components)/Navbar'
 
 
 export const metadata = {
@@ -14,7 +14,7 @@ export default function RootLayout({ children }) {
       <body className='bg-white text-slate-800 mt-[50px]'>
         <Navbar />
         {children}
-        </body>
+      </body>
     </html>
   )
 }

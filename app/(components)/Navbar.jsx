@@ -13,7 +13,7 @@ export default function Navbar() {
         </div>
         <div className="hidden"></div>
         <div className="flex items-center gap-2">
-            <Link href='/signup' className='text-sm  bg-emerald-400 py-[4px] text-emerald-800 outline-2 border-[1px] border-emerald-600  px-3 rounded-md  md:px-4 py-1 '>Sign up</Link>
+            <Link href='/signup' className='text-sm  bg-emerald-400 py-[4px] text-emerald-950 font-semi outline-2 border-[1px] border-emerald-600  px-3 rounded-md  md:px-4 py-1 '>Sign up</Link>
         </div>
       </nav>
     </div>
