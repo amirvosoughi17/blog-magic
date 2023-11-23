@@ -11,7 +11,6 @@ export default function Login() {
     const [loading, setLoading] = useState(false);
     const router = useRouter();
     const [user, setUser] = useState({
-        username: "",
         email: "",
         password: ''
     })
@@ -21,8 +20,10 @@ export default function Login() {
             setLoading(true)
             const response = await axios.post('/api/v1/auth/signin', user);
             router.push('/profile');
+            alert(response.data.message);
             console.log("Login  Successfully", response.data)
         } catch (error) {
+            alert("Login failed")
             console.log('Login Failed', error.message)
             setLoading(false)
         }
