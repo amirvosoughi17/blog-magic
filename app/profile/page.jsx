@@ -1,17 +1,16 @@
 "use client"
-import AdminMenu from '../(components)/AdminMenu'
+import ProfileProvide from './index';
+import Image from 'next/image';
+import bg from '/public/p-bg.jpg'
 
 
-export default function Admin({children}) {
+
+export default function Admin() {
   return (
-    <div className="">
-    <div className=" py-4 px-4 md:px-10 md:px-10">
-      <AdminMenu />
-      <div className="">
-      {children}
-      </div>
-
+   <ProfileProvide>
+    <div className="w-full">
+      
     </div>
-    </div>
+   </ProfileProvide>
   )
 }
