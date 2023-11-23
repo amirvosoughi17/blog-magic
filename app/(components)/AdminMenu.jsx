@@ -20,8 +20,8 @@ export default function AdminMenu() {
 
       {AdminMenu ? (
     <div className="w-full h-screen absolute mt-1">
-      <div className="fixed top-[55px] left-0 bg-zinc-800  border-r border-lime-600/30 h-screen w-[120px] md:w-[140px]">
-        <IoIosArrowBack onClick={handleClick}  className='fixed left-[105px] top-[70px] text-white py-[1x] px-[1px] rounded-full cursor-pointer hover:bg-zinc-500 ' size={24}/>
+      <div className="fixed top-[55px] left-0 bg-zinc-800  border-r border-lime-600/30 h-screen w-[140px]">
+        <IoIosArrowBack onClick={handleClick}  className='fixed left-[105px] top-[70px] text-white py-[1x] px-[1px] rounded-full cursor-pointer bg-zinc-500 ' size={24}/>
         <div className="flex flex-col items-center justify-between  h-full    gap-4 py-7 px-2">
           <div className="flex flex-col items-center gap-[70px] mt-10">
             <div className="text-emerald-400">
