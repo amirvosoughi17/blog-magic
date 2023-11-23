@@ -6,7 +6,6 @@ import axios from 'axios';
 import Link from 'next/link';
 import { SlSocialGoogle } from 'react-icons/sl'
 import { FaGithub } from 'react-icons/fa'
-import { signIn } from 'next-auth/react'
 export default function Login() {
     const [loading, setLoading] = useState(false);
     const router = useRouter();
@@ -35,29 +34,18 @@ export default function Login() {
                 <div className="mb-7">
                     <h1 className='text-emerald-950 font-bold text-3xl'>Login</h1>
                 </div>
-
                 <div className="flex flex-col">
                     <div className="flex items-center justify-center gap-3 bg-emerald-100/40 w-[310px] md:w-[360px] mt-2 mb-[12px] py-[9px]  border-[1px] border-emerald-800/20 rounded">
                         <SlSocialGoogle className='text-emerald-900' size={23} />
                         <h2 className='font-bold text-emerald-900'>
-                            <button
-                                type='button'
-                                onClick={() => signIn('google')}
-                            >
-                                Login with Google
-                            </button>
+                            Login with Google
                         </h2>
                     </div>
 
                     <div className="flex items-center justify-center gap-3 bg-emerald-100/40 w-[310px] md:w-[360px] mb-5 py-[9px]  border-[1px] border-emerald-800/20 rounded">
                         <FaGithub className='text-emerald-900' size={23} />
                         <h2 className='font-bold text-emerald-900'>
-                            <button
-                                type='button'
-                                onClick={() => signIn('github')}
-                            >
-                                Login with GitHub
-                            </button>
+                            Login with GitHub
                         </h2>
                     </div>
                 </div>
