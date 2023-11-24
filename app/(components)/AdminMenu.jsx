@@ -1,20 +1,30 @@
 "use client";
 import React from 'react'
 import Link from 'next/link';
-import {IoIosMenu , IoIosAdd} from 'react-icons/io'
 import {FiUser} from 'react-icons/fi'
 import { useState } from 'react';
 import {RiSignalTowerLine } from 'react-icons/ri';
 import {AiFillLike} from 'react-icons/ai'
-import {IoIosClose , IoIosArrowBack , IoIosArrowForward} from 'react-icons/io'
-
+import {IoIosClose , IoIosArrowBack , IoIosArrowForward , IoIosMenu , IoIosAdd} from 'react-icons/io'
+import axios from 'axios';
+import { useRouter } from 'next/navigation';
 
 
 export default function AdminMenu() {
+  const router = useRouter();
   const [AdminMenu , setAdminMenu] = useState(true);
   const handleClick = () => {
     setAdminMenu(!AdminMenu);
   }
+  const logout = async () => {
+    try {
+     await axios.get('/api/auth/v1/signout');
+     router.push('/login')
+     console.log('Logout successfully');
+    } catch (error) {
+     console.log(error.message)
+    }
+ }
   return (
     <div className="">
 
@@ -48,7 +58,7 @@ export default function AdminMenu() {
             </div>
           </div>
           <div className="mb-[70px] ">
-            <button className='bg-red-200 rounded-full py-[3px] px-3 text-red-700 '>Logout</button>
+            <button className='bg-red-200 rounded-full py-[3px] px-3 text-red-700 ' onClick={logout}>Logout</button>
           </div>
         </div>
       </div>
