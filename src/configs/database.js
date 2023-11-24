@@ -1,5 +1,5 @@
 import mongoose from "mongoose";
-export async function connectToDB () {
+export async function connect () {
     mongoose.connect(process.env.DB_URI);
     const connection = mongoose.connection;
     connection.on('connected', () => {
