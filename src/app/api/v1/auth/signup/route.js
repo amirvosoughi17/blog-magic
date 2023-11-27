@@ -1,9 +1,8 @@
 import { NextResponse } from 'next/server'
 import { connect } from '@/configs/database.js';
-import User from '@/(models)/user.model.js';
+import User from '@/models/user.model.js';
 import { generateToken } from '@/utils/JWTToken.js';
 import bcrypt from 'bcryptjs'
-import { cookies } from 'next/headers'
 connect();
 
 export async function POST(request) {

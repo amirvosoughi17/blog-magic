@@ -1,7 +1,6 @@
 "use client"
 import ProfileProvide from './index';
 import Image from 'next/image';
-import bg from '/public/p-bg.jpg'
 
 
 
