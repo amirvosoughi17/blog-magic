@@ -3,12 +3,15 @@ import React, { useState } from 'react'
 import {RiSignalTowerLine} from 'react-icons/ri';
 import Link from 'next/link';
 import {IoIosMenu , IoIosClose} from 'react-icons/io'
-import Logout from './Logout';
+import axios from 'axios';
+import { useRouter } from 'next/navigation';
+
 
 
 
 export default function Navbar() {
-  const [loged , setLoged] = useState(false)
+  const router = useRouter()
+  const [loged , setLoged] = useState(true)
   const [menu , setMenu] = useState(false);
   const handleClick = () => {
     setMenu(!menu);
@@ -16,6 +19,15 @@ export default function Navbar() {
   const handleClickItems = () => {
     setMenu(!menu);
   }
+  const logout  = async () => {
+    try {
+        await axios.get('/api/v1/auth/signout');
+        router.push('/login')
+        console.log("Logout Successfully");
+    } catch (error) {
+        console.log('logout failed' , error.message);
+    }
+}
   return (
     <div>
       <nav className='w-full fixed top-0  max-w-7xl bg-stone-800 border-b-[1px] border-zinc-700/90 py-3 px-4 md:px-7 flex items-center justify-between backdrop-blur-sm z-50  '>
@@ -38,17 +50,16 @@ export default function Navbar() {
               </div>
         </div>
         <div className="hidden md:block">
-        <Link href='/signup' className='text-sm  bg-emerald-400 py-[5px] text-emerald-800 outline-2 border-[1px] border-emerald-600  px-3 rounded-md  md:px-4 py-1 '>Sign up</Link>
+          {loged ? (
+            <button onClick={logout} className='py-1 px-3 bg-red-300 text-red-900 rounded '>Logout</button>
+          ) :(
+            <Link href='/signup' className='text-sm  bg-emerald-400 py-[5px] text-emerald-800 outline-2 border-[1px] border-emerald-600  px-3 rounded-md  md:px-4 py-1 '>Sign up</Link>
+          )}
         </div>
         <div className="flex md:hidden items-center gap-2">
             <div className="bg-stone-600 md:hidden text-white py-[3px] px-[4px] cursor-pointer rounded" onClick={handleClick}>
               <IoIosMenu size={23}  />
             </div>
-          {loged ? (
-            <Logout />
-          ) : (
-            <Link href='/signup' className='text-sm  bg-emerald-400 py-[4px] text-emerald-800 outline-2 border-[1px] border-emerald-600  px-3 rounded-md  md:px-4 py-1 '>Sign up</Link>
-          )}
         </div>
         {menu ? (
           <div className="fixed top-0 right-0 bg-zinc-700 text-white w-full shadow-xl z-50 h-screen">
