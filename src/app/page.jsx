@@ -27,13 +27,13 @@ export default async function Home() {
     ...new Set(blogs?.map(({category}) => category))
   ];
   return (
-    <div className='bg-stone-900 w-full h-screen mx-auto px-2 py-8 md:px-6 '>
+    <div className='bg-stone-900 w-full h-full overflow-y-auto mx-auto px-2 py-8 md:px-6 '>
       {blogs && uniqueCategories?.map((uniqueCategory , categoryIndex) => 
-      <div className="mb-4" key={categoryIndex}>
-        <h2>{uniqueCategory}</h2>
+      <div className="mb-4 w-full " key={categoryIndex}>
+        <h2 className='text-3xl text-emerald-400 my-10 text-center'>{uniqueCategory} Blogs</h2>
         <div className="flex flex-wrap items-center gap-5 justify-center">
-          {blogs.filter((blog) => blog.category === uniqueCategory).map((filteredBlog , _index) => (
-            <BlogCard id={_index} key={_index} blog={filteredBlog} />
+          {blogs.filter((blog) => blog.category === uniqueCategory).map((filteredBlog , id) => (
+            <BlogCard id={id} key={id} blog={filteredBlog} />
           ))}
         </div>
       </div>

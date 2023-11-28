@@ -7,6 +7,6 @@ export default function ProductButton({id}) {
         router.push(`/blogs/${id}`)
     }
     return (
-        <button onClick={handleClick}  className="cursor-pointer my-4 py-[1px] px-2 bg-stone-900 rounded ">view</button>
+        <button onClick={handleClick}  className="cursor-pointer my-4 py-1 px-7 bg-emerald-400 text-emerald-900 font-semibold  rounded ">view</button>
     )
 }

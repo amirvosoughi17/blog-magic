@@ -1,5 +1,3 @@
-
-import DeleteBlock from "./DeleteBlock"
 import Image from 'next/image';
 import oImage from '../../../public/office.jpg'
 import CardButton from './CardButton'
@@ -19,12 +17,12 @@ const BlogCard = ({blog}) => {
   }
 
   return (
-    <div className="w-[350px] bg-stone-800 text-white">
-        <Image src={oImage} width={350} height={200} alt="blog image" className=" object-cover" />
+    <div className="w-[320px] h-[430px] bg-stone-800 text-white">
+        <Image src={oImage} width={320} height={200} alt="blog image" className=" object-cover" />
         <div className="flex flex-col items-center px-4 py-4 gap-4">
-              <div className="flex flex-col items-center gap-3">
+              <div className="flex flex-col items-center  gap-3">
                 <h1 className="text-lg font-bold text-white">{blog.title}</h1>
-                <p className="text-gray-300 text-sm">{blog.description}</p>
+                <p className="text-gray-300  text-sm">{blog.description}</p>
               </div>
               <span className="border-t-[1px] w-full border-gray-500/60"></span>
               <div className="flex items-center justify-between w-full">

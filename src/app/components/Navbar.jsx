@@ -3,10 +3,12 @@ import React, { useState } from 'react'
 import {RiSignalTowerLine} from 'react-icons/ri';
 import Link from 'next/link';
 import {IoIosMenu , IoIosClose} from 'react-icons/io'
+import Logout from './Logout';
+
 
 
 export default function Navbar() {
-  const [loged , setLoged] = useState(true)
+  const [loged , setLoged] = useState(false)
   const [menu , setMenu] = useState(false);
   const handleClick = () => {
     setMenu(!menu);
@@ -39,10 +41,11 @@ export default function Navbar() {
         <Link href='/signup' className='text-sm  bg-emerald-400 py-[5px] text-emerald-800 outline-2 border-[1px] border-emerald-600  px-3 rounded-md  md:px-4 py-1 '>Sign up</Link>
         </div>
         <div className="flex md:hidden items-center gap-2">
-          {loged ? (
             <div className="bg-stone-600 md:hidden text-white py-[3px] px-[4px] cursor-pointer rounded" onClick={handleClick}>
               <IoIosMenu size={23}  />
             </div>
+          {loged ? (
+            <Logout />
           ) : (
             <Link href='/signup' className='text-sm  bg-emerald-400 py-[4px] text-emerald-800 outline-2 border-[1px] border-emerald-600  px-3 rounded-md  md:px-4 py-1 '>Sign up</Link>
           )}
