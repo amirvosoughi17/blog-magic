@@ -1,17 +1,8 @@
-<<<<<<< HEAD
 import { NextResponse } from "next/server";
 import { connect } from "@/configs/database.js";
 import User from "@/(models)/user.model.js";
 import { generateToken } from "@/utils/JWTToken.js";
 import bcrypt from "bcryptjs";
-import { cookies } from "next/headers";
-=======
-import { NextResponse } from 'next/server'
-import { connect } from '@/configs/database.js';
-import User from '@/models/user.model.js';
-import { generateToken } from '@/utils/JWTToken.js';
-import bcrypt from 'bcryptjs'
->>>>>>> 0efb4e2d186946e42e3a8056a3fcc1cd4f625426
 connect();
 
 export async function POST(request) {
