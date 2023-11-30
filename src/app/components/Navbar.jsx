@@ -9,7 +9,9 @@ import {AiOutlineUser} from 'react-icons/ai'
 
 
 
-export default function Navbar({id}) {
+export default  function Navbar({id}) {
+
+
   const router = useRouter()
   const [loged , setLoged] = useState(true)
   const [menu , setMenu] = useState(false);
