@@ -26,7 +26,7 @@ const BlogCard = ({blog}) => {
               </div>
               <span className="border-t-[1px] w-full border-gray-500/60"></span>
               <div className="flex items-center justify-between w-full">
-                <CardButton  />
+                <CardButton  /> 
                 <p className="text-sm text-gray-100">Created by</p>
               </div>
         </div>

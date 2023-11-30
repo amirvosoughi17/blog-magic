@@ -1,6 +1,6 @@
 import { NextResponse } from 'next/server';
 
-export async function GET(response) {
+export async function GET() {
     try {
         const response = NextResponse.json({ message: "You logged out" }, { status: 200 });
         response.cookies.set({
