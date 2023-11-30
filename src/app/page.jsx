@@ -19,7 +19,7 @@ const getBlogs = async () => {
 export default async function Home() {
   const data = await getBlogs();
   if(!data?.blogs) {
-    return <p>no blogs</p>
+    return <p className='text-emerald-500 flex flex-col items-center justify-center min-h-screen text-4xl'> No Blogs !!</p>
   }
 
   const blogs = data.blogs;
@@ -27,7 +27,7 @@ export default async function Home() {
     ...new Set(blogs?.map(({category}) => category))
   ];
   return (
-    <div className='bg-stone-900 w-full h-full overflow-y-auto mx-auto px-2 py-8 md:px-6 '>
+    <div className='bg-stone-900 text-white w-full h-full overflow-y-auto mx-auto px-2 py-8 md:px-6 '>
       {blogs && uniqueCategories?.map((uniqueCategory , categoryIndex) => 
       <div className="mb-4 w-full " key={categoryIndex}>
         <h2 className='text-3xl text-emerald-400 my-10 text-center'>{uniqueCategory} Blogs</h2>
