@@ -17,11 +17,11 @@ export default function signup() {
         password: ''
     })
 
-    const handleSubmit = async () => {
+    const handleSubmit = async ({id}) => {
         try {
             setLoading(true)
             const response = await axios.post('/api/v1/auth/signin', user);
-            router.push('/profile');
+            router.push(`profile/${id}`);
             console.log("login Successfully", response.data)
         } catch (error) {
             alert("Login failed")
