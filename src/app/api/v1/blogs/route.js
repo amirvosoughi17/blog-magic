@@ -1,7 +1,8 @@
 import { connect } from "@/configs/database";
 import Blog from "@/models/blog.model";
 import User from "@/models/user.model";
-import { jwtDecode } from "jwt-decode";
+import { get_user_from_token } from "@/utils/JWTToken";
+
 connect();
 // Create a New Blog
 export async function POST(request) {
@@ -21,17 +22,14 @@ export async function POST(request) {
         return Response.json({ message: "Title must be more than 3 characters" }, { status: 400 });
     }
 
-    // ***     Recive Authenticated user ID (current user)  for put in author        ***
-    const token = request.cookies.get('access_token') //   get setted cookie 
-    const user = jwtDecode(token?.value) // decode the access_token cookie value for recive user id
-    const user_id = await User.findById(user.id)
-    const author_email = user_id.email
+    const id = await get_user_from_token(request);
+    const user = await User.findOne({ _id: id });
     try {
         const new_blog = await Blog.create({
             title,
             description,
             category,
-            author: author_email,
+            author: user.email,
         })
         return Response.json({ message: "your blog created successfully!", data: new_blog }, { status: 201 });
     } catch (error) {

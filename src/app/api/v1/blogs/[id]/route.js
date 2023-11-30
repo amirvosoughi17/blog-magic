@@ -2,6 +2,7 @@ import Blog from "@/models/blog.model";
 import { connect } from "@/configs/database";
 connect();
 
+// get single blog with givin blog 
 export async function GET(request, { params }) {
     try {
         const { id } = params;

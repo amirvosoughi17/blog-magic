@@ -1,6 +1,7 @@
 import jwt from 'jsonwebtoken';
 import { cookies } from 'next/headers';
-import { NextResponse } from 'next/server';
+import { NextRequest, NextResponse } from 'next/server';
+
 /**
  * @param {String} message 
  * @param {Number} statusCode 
@@ -18,4 +19,15 @@ export function generateToken(message, statusCode, user) {
         httpOnly: true
     }
     return NextResponse.json({ message: message }, { status: statusCode }, cookies().set(cookie_options));
+}
+
+// Get user info from cookie and jwt token
+export async function get_user_from_token(request) {
+    try {
+        const token = request.cookies.get("access_token");
+        const decode_value = jwt.verify(token.value, process.env.JWT_SECRET)
+        return decode_value.id
+    } catch (error) {
+        return Response.json({ message: error.message }, { status: 500 })
+    }
 }
