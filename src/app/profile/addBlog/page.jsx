@@ -58,7 +58,7 @@ export default function page() {
                     <select name="category" value={formData.category} className=' w-[270px] bg-stone-600 py-[6px] px-2 rounded-sm border-[1px] border-zinc-400/30 mb-7' onChange={handleChange}>
                       <option value="software">software</option>
                       <option value="hardware">hardware</option>
-                      <option value="ai">Ai</option>
+                      <option value="AI">AI</option>
                     </select>
                   </div>
                   <button className='w-[270px] bg-emerald-500 py-[5px] rounded text-emerald-900 border-[1px] border-emerald-600 cursor-pointer' onClick={handleSubmit}>{loading ? "Loading..." : "Create"}</button>

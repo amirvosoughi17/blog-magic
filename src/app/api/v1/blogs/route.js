@@ -5,7 +5,8 @@ connect();
 
 export async function POST(request) {
     const body = await request.json();
-    const { title, description, category } = body;
+    const formData = body.formData;
+    const { title, description, category } = formData;
 
     // ***  BLOG CREATION VALIDATIONS   ***
 
