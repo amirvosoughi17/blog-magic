@@ -7,6 +7,6 @@ export async function connect () {
     });
     connection.on("error", (error) => {
         console.log('error from database connection', error);
-        process.exit(1)             
+        process.exit(1)                 
     });
 }

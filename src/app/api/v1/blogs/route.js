@@ -2,13 +2,15 @@ import { connect } from "@/configs/database";
 import Blog from "@/models/blog.model";
 import User from "@/models/user.model";
 import { get_user_from_token } from "@/utils/JWTToken";
+import { writeFile } from "fs/promises";
+import { join } from 'path';
 
 connect();
 // Create a New Blog
 export async function POST(request) {
     const body = await request.json();
     const formData = body.formData;
-    const { title, description, category } = formData;
+    const { title, description, category, image } = formData;
 
     // ***  BLOG CREATION VALIDATIONS   ***
 
@@ -22,6 +24,14 @@ export async function POST(request) {
         return Response.json({ message: "Title must be more than 3 characters" }, { status: 400 });
     }
 
+    //  Check blog image chosen
+    if (!image) {
+        return Response.json({ message: "Please chose one image to your blog post" }, { status: 400 });
+    }
+    const bytes = await image.arrayBuffer();
+    const buffer = Buffer.from(bytes);
+    const path = join('/', 'images', image.name)
+    const saved_image = await writeFile(path, buffer);
     const id = await get_user_from_token(request);
     const user = await User.findOne({ _id: id });
     try {
@@ -30,6 +40,7 @@ export async function POST(request) {
             description,
             category,
             author: user.email,
+            image: saved_image
         })
         return Response.json({ message: "your blog created successfully!", data: new_blog }, { status: 201 });
     } catch (error) {
