@@ -12,3 +12,27 @@ export async function GET(request, { params }) {
         return Response.json({ error: error.message });
     }
 }
+
+
+export async function PUT(request, { params }) {
+    const { id } = params;
+    const body = await request.json();
+    const { title, description, category } = body;
+
+    // check if requested data's are not empty
+    if (!title || !description || !category) {
+        return Response.json({ message: "Please fill in all fields" }, { status: 400 });
+    }
+    try {
+        const updated_blog = await Blog.findOneAndUpdate({ _id: id }, {
+            title,
+            description,
+            category
+        }, {
+            new: true,
+        });
+        return Response.json({ updated_blog }, { status: 200 });
+    } catch (error) {
+        return Response.json({ message: error.message }, { status: 500 });
+    }
+}
