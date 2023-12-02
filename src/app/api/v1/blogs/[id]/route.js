@@ -13,7 +13,7 @@ export async function GET(request, { params }) {
     }
 }
 
-
+// update blog
 export async function PUT(request, { params }) {
     const { id } = params;
     const body = await request.json();
@@ -34,5 +34,16 @@ export async function PUT(request, { params }) {
         return Response.json({ updated_blog }, { status: 200 });
     } catch (error) {
         return Response.json({ message: error.message }, { status: 500 });
+    }
+}
+
+// Delete blog
+export async function DELETE(request, { params }) {
+    const { id } = params;
+    try {
+        await Blog.findOneAndDelete({ _id: id });
+        return Response.json({ message: "Blog deleted successfully" }, { status: 200 })
+    } catch (error) {
+        return Response.json({ message: error.message }, { status: 500 })
     }
 }
